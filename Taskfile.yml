@@ -1,0 +1,26 @@
+# https://taskfile.dev
+
+version: "3"
+
+vars:
+  VIRTUAL_ENV: venv
+
+tasks:
+  setup:
+    cmds:
+      - "python -m venv {{.VIRTUAL_ENV}}"
+      - "{{.VIRTUAL_ENV}}/bin/python -m pip install --upgrade pip"
+      - "{{.VIRTUAL_ENV}}/bin/pip install -r requirements.txt"
+      - echo "Setup complete"
+    platforms:
+      - "darwin"
+      - "linux"
+
+  setup-windows:
+    cmds:
+      - "python -m venv {{.VIRTUAL_ENV}}"
+      - "{{.VIRTUAL_ENV}}\\Scripts\\python -m pip install --upgrade pip"
+      - "{{.VIRTUAL_ENV}}\\Scripts\\pip install -r requirements.txt"
+      - echo "Setup complete"
+    platforms:
+      - "windows"
